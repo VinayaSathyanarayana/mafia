@@ -120,10 +120,10 @@ Mobile applications are really critical when it comes to vulnerabilities in prod
 #### Core Softwares :
     - Python 2.7
 
-## Lead Developer
+### Lead Developer
 - Mohan Kallepalli (@mohankallepalli) 
 
-## Credits
+### Credits
 - Ankur Bhargava
 - Flipkart security team
 
