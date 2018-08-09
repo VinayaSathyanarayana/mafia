@@ -1,0 +1,67 @@
+
+
+  <link rel="icon" href="/static/favicon.png" type="image/png" sizes="16x16">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/external/bootstrap.min.css">
+  <script src="/static/external/jquery-1.12.4.js"></script>
+  <script src="/static/external/bootstrap.min.js"></script>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <h2><img src="/static/logo-login.png" alt="" width="160px" /></h2>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+       <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+       <li><a href="/dashboard"><span class="glyphicon glyphicon-th"></span> Dashboard</a></li>
+       <li class="dropdown">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-user"></span> {% if session.get('email') %}
+            {{ session.get('name').title() | e }}
+            {% else %}
+            Guest 
+            {% endif %}
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          </ul>
+        </li>
+    </ul>
+  </div>
+</nav>
+
+  <div align="center" class="container"> 
+    {% if message %}
+      <div class="container" align="center">
+        <div class="alert alert-{{ category }}" role="alert" style="width: 50%">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ message | e }}
+      </div>
+    {% endif %}
+    <div>
+      <style>
+      hr {
+        color: #424A50;
+      }
+      </style>
+      <br />
+      <img src="/static/logo.png" alt="" width="420px" />
+      <hr noshade><br />
+      <div style="width:80%; color: #40647C">
+        <p>
+          
+          Mobile applications are really critical when it comes to vulnerabilities in production environment. The only option to remove a product issue is to force update the app, which is not at all a good user experience specially when the app download size is high. With this project, we aim to automate the manual security testing and leverage developers with a tool which helps them identify bugs well in advance.
+        </p>
+<br /><br /><br /><br />
+
+        <h5>
+          MAFIA - Mobile Automation Framework for Intellegent Analysis, is developed with following goals,
+            <br /><br />Perform end to end Security testing for a given mobile app.
+            <br />Create a self serve tool for developers and security engineers.
+        </h5>
+      </div>
+    </div>
+  </div>
+<!-- Footer -->
+{% extends "footer.html" %}
+<!-- Footer -->

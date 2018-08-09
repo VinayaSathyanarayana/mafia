@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mafia</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/static/favicon.png" type="image/png" sizes="16x16">
+  <link href='/static/external/css?family=Ubuntu' rel='stylesheet' type='text/css'> 
+  <link rel="stylesheet" href="/static/external/bootstrap.min.css">
+  <script src="/static/external/jquery-1.12.4.js"></script>
+  <script src="/static/external/jquery.dataTables.min.js"></script>
+  <link href="/static/external/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+  
+  <script src="/static/external/bootstrap.min.js"></script>
+  <script src="/static/external/amcharts.js"></script>
+  <script src="/static/external/serial.js"></script>
+  <script src="/static/external/amstock.js"></script>
+  <script src="/static/external/export.min.js"></script>
+  <link rel="stylesheet" href="/static/external/export.css" type="text/css" media="all" />
+<style>
+  h2 {
+    color: white;
+  }
+  body {
+    /*font-family: 'Ubuntu', sans-serif;*/
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .navbar-brand
+  {  
+      position: absolute;
+      width: 100%;
+      left: 0;
+      text-align: center;
+      margin:0 auto;
+  }
+  .navbar-inverse{
+    background: #182530;
+  }
+
+  .btn-grey{
+      background-color: black ;
+      color:white;
+  }
+
+  #scan-now{
+    background-color: #182530;
+    color:white;
+  }
+  #new-scan{
+    background-color: #182530;
+    color:white;
+  }
+  #history h2{
+    color:black;  
+  }
+    @font-face {
+    font-family: 'hacked';
+    src: url("{{ url_for('static', filename = 'hacked.woff') }}") format('woff'),
+     url("{{ url_for('static', filename = 'hacked.woff') }}") format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+  }  
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <h2><img src="/static/logo-home.png" alt="" width="160px" /></h2>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+       <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+       <li><a href="/dashboard"><span class="glyphicon glyphicon-th"></span> Dashboard</a></li>
+       <li class="dropdown">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-user"></span> {% if session.get('email') %}
+            {{ session.get('name').title() | e }}
+            {% else %}
+            Guest 
+            {% endif %}
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          </ul>
+        </li>
+       
+    </ul>
+  </div>
+</nav>
+
+<div>
+<div class="container-fluid">
+ <style>
+  body {  
+    /*background: url("back1.jpg") no-repeat center center fixed; */
+    background-size: cover;
+}
+.modal-header, h4, .close {
+      background-color: #182530;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+.modal-content{
+  background-color: #e6e6e6;
+}
+  .modal-footer {
+      background-color: #182530;
+  }
+
+</style>  
+<center>
+<div>
+  <div class="container" align="center">
+    {% if message %}
+        <div class="alert alert-{{ category }}" role="alert" style="width: 50%">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      {{ message | safe }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="container" align="center">
+      {% if already_scanned %}
+          <div class="alert alert-{{ category }}" role="alert" style="width: 50%">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+          You have already scanned this apk file last at {{ same_scan_time | e}} . Do you want to 
+          <a href="/reporting/report?id={{ same_scan_id | safe }}">View Report</a>?
+        
+        </div>
+      {% endif %}
+    </div>
+<h2>
+  <button type="button" class="btn btn-grey btn-md" style="width:300px" data-toggle="modal" data-target="#myModal" id="new-scan" >
+    <strong>New scan</strong>
+  </button>
+    <button type="button" class="btn btn-grey btn-md" style="width:300px" data-toggle="modal" data-target="#myModal2" id="new-scan" >
+    <strong>Compare Reports</strong>
+  </button>
+</h2>
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding:35px 50px;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4><strong> New Scan</strong></h4>
+      </div>
+      <div class="modal-body" style="padding:40px 50px;">
+        <form method="POST" action="/submit_apk" role="form" enctype="multipart/form-data"> 
+          <label for="application"><h3>Select APK</h3></label>
+          <div class="fileinput fileinput-new" data-provides="fileinput">
+            <span class="btn btn-default  btn-block btn-file">
+              <input type="file" name="application" id="application" max-size=32154000 required/>
+            </span>
+          </div> 
+          <button type="submit" class="btn btn-block" name="upload" value="upload" id="scan-now" ><strong>Scan Now</strong></button>            
+        </form> 
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="myModal2" role="dialog">
+  <div class="modal-dialog"  style="width: 800px">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding:35px 50px;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4><strong> Compare Reports</strong></h4>
+      </div>
+      <div class="modal-body" style="padding:40px 50px;">
+        <label>Select upto 3 Scans only</label>
+        <form method="POST" action="/compare_reports" role="form" enctype="multipart/form-data"> 
+          <div class="container-fluid" id="history">
+            <table id="compare_history_table" class="display" style="width:100%" data-pagination="true"></table>
+          </div>
+          <button type="submit" class="btn btn-block" name="upload" value="upload" id="scan-now"  style="width: 300px">
+            <strong>Compare</strong>
+          </button>            
+        </form> 
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>  <br/>
+  <br/>
+
+<div class="container-fluid" id="history">
+  <table id="scan_history_table" class="display" style="width:100%" data-pagination="true"></table>
+</div>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'index.js') }}"></script>
+    <!-- Footer -->
+    {% extends "footer.html" %}
+    <!-- Footer -->
+</body>
+</html>

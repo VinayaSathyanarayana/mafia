@@ -1,0 +1,45 @@
+
+
+  <link rel="icon" href="/static/favicon.png" type="image/png" sizes="16x16">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/external/bootstrap.min.css">
+  <script src="/static/external/bootstrap.min.js"></script>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <h2><img src="/static/logo-login.png" alt="" width="160px" /></h2>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+       <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+       <li><a href="/dashboard"><span class="glyphicon glyphicon-th"></span> Dashboard</a></li>
+        {% if session.get('email') %}
+        <li><a href="/Logout"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+        {% else %}
+        <li><a href="/login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+        {% endif %}
+    </ul>
+  </div>
+</nav>
+
+  <div class="container"> 
+    <div>
+      <br />
+      <div align="center">
+        <img src="/static/logo.png" alt="" width="420px" />
+        <hr noshade>
+      </div>
+      <div style="width:80%; color: #40647C">
+          Terms of Use: <br/>
+          This website is designed and developed with the sole purpose of demonestrating the tool MAFIA for better understanding of the functionalities.<br /><br />
+        <ul>
+          <li>Scannig / testing of any mobile apk is sole responsibility of the user. Please avoid scanning apps that you <u>do not own</u>.</li>
+          <li>This website is for demo purpose, hence it is not configured to scan too big apps. Please avoid uploading apks of very high size.</li>
+          <li>Testing this website for functional or security related issues is not acceptable under any conditions.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <!-- Footer -->
+    {% extends "footer.html" %}
+    <!-- Footer -->
