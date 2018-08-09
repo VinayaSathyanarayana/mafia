@@ -14,7 +14,7 @@ class Config(object):
     OAUTH_CLIENT = 'google'
 
     GOOGLE_CLIENT_ID = '1051524488482-9p4r4sbo0vcs5b2k2kdsh377o6p0e1sd.apps.googleusercontent.com'
-    GOOGLE_CLIENT_SECRET = 'skoFBXW5yGmSklJUdraagB75'
+    GOOGLE_CLIENT_SECRET = 'lDQimvLLD4FkDAExqDKetm5v'
     REDIRECT_URI = '/oauth2callback'  # one of the Redirect URIs from Google APIs console
 
     BASE_URL='https://www.google.com/accounts/'
