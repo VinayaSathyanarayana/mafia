@@ -94,7 +94,7 @@ Mobile applications are really critical when it comes to vulnerabilities in prod
 ![Detailed Report](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Detailed%20Report.png)
 
 #### Scans Dashboard
-![Scans Dashboard](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Dash%20board.png)
+![Scans Dashboard](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Dash%20Board.png)
 
 #### Scan Comparison
 ![Scans Comparison](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Compare%20Scans.png)
