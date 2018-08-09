@@ -1,5 +1,5 @@
 
-# MAFIA - Mobile Automated Framework for Intelligent Analisys.
+# MAFIA - Mobile security Automated Framework for Intelligent Analisys.
 
 Mobile applications are really critical when it comes to vulnerabilities in production environment. The only option to remove a product issue is to force update the app, which is not at all a good user experience specially when the app download size is high. With this project, we aim to automate the manual security testing and leverage developers with a tool which helps them identify bugs well in advance.
 
@@ -19,7 +19,6 @@ Mobile applications are really critical when it comes to vulnerabilities in prod
     - update values for GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, SECRET_KEY etc
 - in **run.py** 
     - edit the port of the app (Default: 5000)
-    
 
 ##### TROUBLESHOOTS :
 
@@ -37,20 +36,12 @@ Mobile applications are really critical when it comes to vulnerabilities in prod
     
     `"py -m pip install ..." or "pip3 install ..."`
 
-
-- Error parsing in requirements.txt ?
-
-    Run instead this compatible formatted file :
-        `python -m pip install -r requirements-pip2.txt`   
-    or convert first your requirements.txt to a python2 / pip2 compatible format with this command :
-        `python -m pip list --format=freeze > requirements.txt`
-
 #### Milestones
 
 - Version 1.0
     1. Static Android Applications Testing (Apk files)
-    - Vulnerability coverage
-        1. Tapjacking
+    2. Vulnerability coverage
+        - Tapjacking
         - Manifest Analysis
         - SSL issues
         - SQL injection
@@ -61,15 +52,15 @@ Mobile applications are really critical when it comes to vulnerabilities in prod
         - External Storage
         - Cryptographic based vulnerabilities
         - Exposing external JavaScript Interfaces in webviews
-    1. Self Serve Portal for Developers
+    3. Self Serve Portal for Developers
 
 -  Version 1.1
     1. Comparision between scan results
     
 - Version 1.2
     1. Dashboard for scan results
-    - Report downloads in JSON and XML format
-    - UI look-n-feel Enhancements
+    2. Report downloads in JSON and XML format
+    3. UI look-n-feel Enhancements
 
 #### Screenshots
 
@@ -127,7 +118,14 @@ Mobile applications are really critical when it comes to vulnerabilities in prod
     1. IOS App Testing
 
 #### Core Softwares :
-- Python 2.7
+    - Python 2.7
+
+## Lead Developer
+- Mohan Kallepalli (@mohankallepalli) 
+
+## Credits
+- Ankur Bhargava
+- Flipkart security team
 
 ##### License: Apache 2.0
 ~~~~
