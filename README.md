@@ -74,30 +74,30 @@ Mobile applications are really critical when it comes to vulnerabilities in prod
 #### Screenshots
 #### New scan
 
-![Login Page](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Login Page.png)
+![Login Page](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Login%20Page.png)
 
-![Home Page](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Home Page.png)
+![Home Page](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Home%20Page.png)
 
-![New Scan](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/New Scan.png)
+![New Scan](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/New%20Scan.png)
 
-![Scan in Progress](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Scan in Progress.png)
+![Scan in Progress](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Scan%20in%20Progress.png)
 #### Scan Report
 
-![Report Page](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Report Page.png)
+![Report Page](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Report%20Page.png)
 
-![Analysis Summary](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Analysis Summery.png)
+![Analysis Summary](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Analysis%20Summery.png)
 
 #### Detailed Report
 
-![Detailed Report](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Detailed Report.png)
+![Detailed Report](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Detailed%20Report.png)
 
 #### Scans Dashboard
 ![Scans Dashboard](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Dashboard.png)
 
 #### Scan Comparison
-![Scans Comparison](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Compare Scans.png)
+![Scans Comparison](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Compare%20Scans.png)
 
-![Scan Comparison](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Scan Comparison.png)
+![Scan Comparison](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Scan%20Comparison.png)
 
 
 #### Roadmap
