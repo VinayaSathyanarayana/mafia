@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/favicon.png" type="image/png" sizes="16x16">
+    <script src="/static/external/jquery-1.12.4.js"></script>
+    <title>Compare Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/external/bootstrap.min.css">
+  <script src="/static/external/bootstrap.min.js"></script>
+    <script src="/static/external/amcharts.js"></script>
+    <script src="/static/external/serial.js"></script>
+    <script src="/static/external/light.js"></script>
+
+</head>
+<style>
+
+body{
+background-color: #000000;
+
+}
+
+@font-face {
+  font-family: 'hacked';
+  src: url("{{ url_for('static', filename = 'hacked.woff') }}") format('woff'),
+   url("{{ url_for('static', filename = 'hacked.woff') }}") format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}  
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+    background: #000000;
+
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 235px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 0px;
+        position: relative;
+        margin-top: 60px;
+        margin-left: 5px;
+        background: #000000;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+  }
+
+  table {
+    color: silver;
+    vertical-align: middle;
+  }
+
+  thead {
+    color: black; 
+  }
+
+  tr:hover td {
+    background: white;
+    color: black;
+  }
+
+  th { 
+    vertical-align: baseline;
+  }
+  td {
+    vertical-align: middle;
+    height: 4em;
+    
+  }
+
+  thead tr th:first-child,
+  tbody tr td:first-child {
+    width: 15em;
+    min-width: 8em;
+    max-width: 15em;
+    word-break: break-all;
+  }
+#chartdiv {
+  width: 80%;
+  height: 300px;
+} 
+</style>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <h2><img src="/static/logo-login.png" alt="" width="160px" /></h2>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+           <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+           <li><a href="/dashboard"><span class="glyphicon glyphicon-th"></span> Dashboard</a></li>
+           <li class="dropdown">
+              <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-user"></span> {% if session.get('email') %}
+                {{ session.get('name').title() | e }}
+                {% else %}
+                Guest 
+                {% endif %}
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+              </ul>
+            </li>
+           
+        </ul>
+      </div>
+    </nav>
+    <div>
+      <div id="page-content-wrapper">
+      <center>
+          {% if message %}
+        <div class="container" align="center">
+            <div class="alert alert-{{ category }}" role="alert" style="width: 50%">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{ message | safe }}
+            </div>
+        </div>
+          {% endif %}
+      </center>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul id="tab" class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home" id="hometab">Comparision Results</a></li>
+              </ul>                    
+            </div>
+          </div>
+        </div>
+    </div>
+    <br /><br />
+    <center>
+    <div class="container-fluid">
+      <div id="chartdiv"></div><br/><hr noshade width="80%"><br/>
+      <h4><font color="white">Vulnerabiliy wise comparision</h4><br />
+      <table id="scan_compare_table" class="table table-hover table-bordered table-dark" style="width:75%;">
+        <thead>
+          <tr class="active" style="text-align: center">
+            <td><b>Vulnerability</b></td>
+            {% for package in packages %}
+            <td><b>{{ packages[package] | e }}</b></td>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for result in compare_results %}
+          <tr>
+            <td style="vertical-align: middle"><b>{{result | e}}</b></td>
+            {% for package in packages %}
+            {% if packages[package] in compare_results[result] %}
+            <td style="text-align: center; vertical-align: middle"><label class="glyphicon glyphicon-ok" ></label></td>
+            {% else %}
+            <td style="text-align: center; vertical-align: middle"><label class="glyphicon glyphicon-remove" ></label></td>
+            {% endif %}
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div><br /><br /><br />
+    <script type="text/javascript" src="{{ url_for('static', filename = 'compare.js') }}"></script>
+    <script>
+      var data = {{vuln_level | safe}};
+    </script>
+    <!-- Footer -->
+    {% extends "footer.html" %}
+    <!-- Footer -->
+  </body>
+</html>

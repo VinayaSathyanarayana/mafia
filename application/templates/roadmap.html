@@ -1,0 +1,125 @@
+
+
+  <link rel="icon" href="/static/favicon.png" type="image/png" sizes="16x16">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/external/bootstrap.min.css">
+  <script src="/static/external/jquery-1.12.4.js"></script>
+  <script src="/static/external/bootstrap.min.js"></script>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <h2><img src="/static/logo-login.png" alt="" width="160px" /></h2>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+       <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+       <li><a href="/dashboard"><span class="glyphicon glyphicon-th"></span> Dashboard</a></li>
+       <li class="dropdown">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-user"></span> {% if session.get('email') %}
+            {{ session.get('name').title() | e }}
+            {% else %}
+            Guest 
+            {% endif %}
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          </ul>
+        </li>
+    </ul>
+  </div>
+</nav>
+
+  <div align="center" class="container"> 
+    {% if message %}
+      <div class="container" align="center">
+        <div class="alert alert-{{ category }}" role="alert" style="width: 50%">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ message | e }}
+      </div>
+    {% endif %}
+    <div>
+      <style>
+      hr {
+        color: #424A50;
+      }
+      </style>
+      <br />
+      <img src="/static/logo.png" alt="" width="420px" />
+      <hr noshade>
+      <div style="width:80%; color: #40647C">
+        <p>
+          <div align="left">
+          <h4>Milestones #v1</h4>
+            <ul>
+              <li>Version 1.0</li>
+                <ul>
+                  <li>Static Android Applications Testing (Apk files)</li>
+                  <li>Vulnerability coverage</li>
+                    <ul>
+                      <li>Tapjacking</li>
+                      <li>Manifest Analysis</li>
+                      <li>SSL issues</li>
+                      <li>SQL injection</li>
+                      <li>Logging based vulnerabilities</li>
+                      <li>Content Providers access permissions</li>
+                      <li>Web View Security</li>
+                      <li>Sensitive data on the shared storage</li>
+                      <li>External Storage</li>
+                      <li>Cryptographic based vulnerabilities</li>
+                      <li>Exposing external JavaScript Interfaces in webviews</li>
+                    </ul>
+                  <li>Self Serve Portal for Developers</li>
+                </ul><br />
+
+              <li>Version 1.1 :</li>
+                <ul><li>Comparision between multiple scan results</ul></li>
+                <br />
+              <li>Version 1.2 :</li>
+                <ul><li>Dashboard for scan results</li>
+                <li>Report downloads in JSON and XML format</li>
+                <li>UI look-n-feel Enhancements</li></ul>
+            </ul>
+        </div>
+      </p>
+      <p>
+          <div align="left">
+          <h4>Roadmap</h4>
+            <ul>
+              <li>Version 2.0</li>
+                <ul>
+                  <li>Dynamic Android Application Testing</li>
+                    <ul>
+                      <li>Test the api calls</li>
+                      <li>Third-party Data Transit on Unencrypted Channel</li>
+                      <li>Sensitive information sent as a querystring parameter</li>
+                      <li>Cleartext password in Response</li>
+                      <li>Other Api/ Server related security test cases</li>
+                    </ul>
+                  <li>Static Analysis Improvements</li>
+                    <ul>
+                      <li>Look for Debug Logs</li>
+                      <li>Check for file creations</li>
+                      <li>Sensitive information in Application Log Files</li>
+                      <li>Application is Accessible on Rooted Device</li>
+                      <li>Unencrypted Credentials in Databases (sqlite db)</li>
+                      <li>Store sensitive information outside App Sandbox (on SDCard)</li>
+                      <li>Allow Global File Permission on App Data</li>
+                      <li>Store Encryption Key Locally/Store Sensitive Data in ClearText</li>
+                      <li>Bypass Certificate Pinning</li>
+                      <li>App/Web Caches Sensitive Data Leak</li>
+                      <li>Leaking Content Provider</li>
+                    </ul>
+                </ul><br />
+
+              <li>Version 3.0 :</li>
+                <ul><li>IOS App Testing</ul></li>
+                <br /><br /><br /><br />
+        </div>
+      </p>
+      </div>
+    </div>
+  </div>
+<!-- Footer -->
+{% extends "footer.html" %}
+<!-- Footer -->
