@@ -72,15 +72,17 @@ Mobile applications are really critical when it comes to vulnerabilities in prod
     - UI look-n-feel Enhancements
 
 #### Screenshots
-#### New scan
 
 ![Login Page](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Login%20Page.png)
 
 ![Home Page](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Home%20Page.png)
 
+#### New scan
+
 ![New Scan](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/New%20Scan.png)
 
 ![Scan in Progress](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Scan%20in%20Progress.png)
+
 #### Scan Report
 
 ![Report Page](https://github.com/Flipkart-Incubator/Mafia/raw/docs/Docs/Report%20Page.png)
