@@ -24,7 +24,7 @@ lxml==4.2.4
 MarkupSafe==1.0
 matplotlib==2.2.2
 networkx==2.1
-numpy==1.15.0
+numpy==1.22.0
 oauth2==1.9.0.post1
 pathlib2==2.3.2
 pexpect==4.6.0
